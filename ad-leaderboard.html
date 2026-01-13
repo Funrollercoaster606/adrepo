@@ -1,8 +1,31 @@
- <script id="aclib" type="text/javascript" src="https://fishnerds.neocities.org/aclib.js"></script>
-<div class="ad-leaderboard">
-        <script type="text/javascript">
-            aclib.runBanner({
-                zoneId: '10804538',
-            });
-        </script>
-  </div>
+<div id="ad-container"></div>
+
+<script type="text/javascript">
+  // We wrap your working code into a virtual "file" in memory
+  const adCode = `
+    <html>
+      <body style="margin:0;">
+        <script src="https://fishnerds.neocities.org/aclib.js"><\/script>
+        <script>
+          // Wait for aclib to load, then run
+          window.onload = function() {
+            if(window.aclib) {
+              aclib.runBanner({ zoneId: '10804538' });
+            }
+          };
+        <\/script>
+      </body>
+    </html>
+  `;
+
+  const blob = new Blob([adCode], { type: 'text/html' });
+  const blobUrl = URL.createObjectURL(blob);
+
+  const iframe = document.createElement('iframe');
+  iframe.src = blobUrl;
+  iframe.width = "728"; // Leaderboard width
+  iframe.height = "90"; // Leaderboard height
+  iframe.style.border = "none";
+  
+  document.getElementById('ad-container').appendChild(iframe);
+</script>
