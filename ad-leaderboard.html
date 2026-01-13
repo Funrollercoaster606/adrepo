@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body { margin: 0; padding: 0; overflow: hidden; background: transparent; }
-        
-        /* The container for the label and close button */
-        #ad-controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 2px 8px;
-            background: rgba(0, 0, 0, 0.6); /* Slightly transparent black */
-            border-bottom-left-radius: 5px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            pointer-events: auto;
-        }
+<style>
+    body { margin: 0; padding: 0; overflow: hidden; background: transparent; position: relative; }
+    
+    /* We wrap the controls in a container that forces itself to the very top layer */
+    #overlay-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        /* A z-index of 2147483647 is the maximum possible value in CSS */
+        z-index: 2147483647 !important; 
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.7) !important;
+        padding: 2px 8px;
+        border-bottom-left-radius: 5px;
+        pointer-events: auto !important;
+    }
 
-        .ad-text {
-            color: #ccc;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            user-select: none;
-        }
+    .ad-text {
+        color: #aaa !important;
+        font-size: 8px !important;
+        font-family: sans-serif !important;
+        text-transform: uppercase;
+        margin-right: 8px;
+        user-select: none;
+    }
 
-        .ad-x {
-            color: #fff;
-            font-size: 14px;
-            cursor: pointer;
-            font-weight: bold;
-            padding: 0 2px;
-        }
+    .ad-x {
+        color: #fff !important;
+        font-size: 14px !important;
+        cursor: pointer !important;
+        font-weight: bold;
+        line-height: 1;
+    }
 
-        .ad-x:hover { color: #ff4d4d; }
+    .ad-x:hover { color: #ff0000 !important; }
 
-        /* Hide the entire ad when 'closed' */
-        .hidden { display: none !important; }
-    </style>
-</head>
-<body>
+    /* Hide the ad when triggered */
+    .hidden { display: none !important; }
+</style>
 
-    <div id="ad-controls">
-        <span class="ad-text">Advertisement</span>
-        <span class="ad-x" onclick="closeAd()">×</span>
-    </div>
+<div id="overlay-container">
+    <span class="ad-text">Advertisement</span>
+    <span class="ad-x" onclick="closeAd()">×</span>
+</div>
 
-    <div id="ad-target"></div>
+<div id="ad-target"></div>
 
     <script id="aclib" type="text/javascript" src="https://acscdn.com/script/aclib.js"></script>
     <script type="text/javascript">
