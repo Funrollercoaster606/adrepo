@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <style>body { margin: 0; padding: 0; background: transparent; overflow: hidden; }</style>
+    <style>body { margin: 0; padding: 0; overflow: hidden; background: transparent; }</style>
 </head>
 <body>
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    <script id="aclib" type="text/javascript" src="https://acscdn.com/script/aclib.js"></script>
+    <div id="ad-target"></div>
     <script type="text/javascript">
         window.onload = function() {
             if (window.aclib) {
                 aclib.runBanner({
                     zoneId: '10804538',
+                    renderIn: '#ad-target'
                 });
             }
         };
